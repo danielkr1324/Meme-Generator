@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ultimate Meme Generator</title>
+</head>
+<body onload="onInit()">
+    <header>
+        <nav>
+            <h2>MemeGenerator</h2>
+            <ul>
+                <li>Gallery</li>
+                <li>Memes</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="filter-bar">
+
+        </section>
+
+        <section class="gallery-container"></section>
+
+        <section class="meme-container">
+            <canvas height="400" width="400"></canvas>
+            <aside class="editor">Edit</aside>
+        </section>
+    </main>
+    
+
+    <!-- SCRIPTS -->
+    <script src="js/Services/storageService.js"></script>
+    <script src="js/Services/utilService.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/Services/galleryService.js"></script>
+    <script src="js/Services/memeService.js"></script>
+    <script src="js/memeController.js"></script>
+</body>
+</html>
