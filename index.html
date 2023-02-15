@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/main.css">
     <title>ultimate Meme Generator</title>
 </head>
 <body onload="onInit()">
@@ -26,8 +27,13 @@
         <section class="gallery-container"></section>
 
         <section class="meme-container">
-            <canvas height="400" width="400"></canvas>
-            <aside class="editor">Edit</aside>
+            <div class="canvas-container">
+                <canvas height="400" width="400"></canvas>
+            </div>
+            <aside class="editor">
+                <label>Enter Text</label>
+                <input type="text" class="text-input"  onchange="onSetLineText(event)">
+            </aside>
         </section>
     </main>
     

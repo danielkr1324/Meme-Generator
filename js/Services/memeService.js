@@ -5,18 +5,22 @@ const STORAGE_KEY = 'memesDB'
 let gKeywordSearchCountMap = {}
 
 let gMeme = {
-  selectedImgId: 5,
+  selectedImg: {},
   selectedLineIdx: 0,
   lines: [
     {
       txt: 'I sometimes eat Falafel',
       size: 20,
-      align: 'left',
-      color: 'red',
+      align: 'center',
+      color: 'black',
     },
   ],
 }
 
-function setMemeImage(imgId) {
-  gMeme.selectedImgId = imgId
+function setImg(image) {
+  gMeme.selectedImg = image
+}
+
+function setLineText(txt) {
+  gMeme.lines[0].txt = txt
 }

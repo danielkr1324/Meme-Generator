@@ -49,3 +49,9 @@ function getImgsGallery() {
 function getImg(id) {
   return gImgs.find(img => img.id === id)
 }
+
+function getMeme() {
+  return {
+    ...gMeme,
+  }
+}
