@@ -37,7 +37,7 @@ function createImgsGallery() {
 function createImg(keyWords, id) {
   return {
     id,
-    url: `../images/${id}.jpg`,
+    url: `images/${id}.jpg`,
     keyWords: keyWords,
   }
 }
