@@ -24,8 +24,6 @@ let imagesKeyWords = [
 ]
 createImgsGallery()
 
-console.log(gImgs)
-
 // assign gImgs to array of meme images objects
 function createImgsGallery() {
   gImgs = []

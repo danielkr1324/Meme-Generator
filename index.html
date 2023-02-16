@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/01321bbdf7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="CSS/main.css">
     <title>ultimate Meme Generator</title>
+    <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/01321bbdf7.css" crossorigin="anonymous"> -->
 </head>
 <body onload="onInit()">
+    
     <header>
         <nav>
             <h2>MemeGenerator</h2>
             <ul>
-                <li>Gallery</li>
-                <li>Memes</li>
-                <li>About</li>
+                <li><a href="#" class="nav-link" onclick="onRenderGallery()">Gallery</a> </li>
+                <li><a href="#" class="nav-link" onClick="onRenderMemes()">Memes</a> </li>
+                <li><a href="#" class="nav-link" onclick="onRenderAbout()">About</a> </li>
             </ul>
         </nav>
+
     </header>
 
     <main>
@@ -32,10 +36,27 @@
             </div>
             <aside class="editor">
                 <label>Enter Text</label>
-                <input type="text" class="text-input"  onchange="onSetLineText(event)">
+                <input type="text" class="text-input"  oninput="onSetLineText(event) ">
+                <label for="stroke">Stroke Color</label>
+                <input oninput="onSetColor('strokeColor',this.value)"  type="color" id="stroke" value="#000000">
+                <label for="fill">Fill Color</label>
+                <input oninput="onSetColor('fillColor',this.value)"  type="color" id="fill" value="#ffffff">
+                <button class="btn btn-add-line" onclick="onAddTxtLine()"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn btn-increase" onclick="onFontSizeChange('increase')"><i class="fa-solid fa-maximize"></i></button>
+                <button class="btn btn-decrease" onclick="onFontSizeChange('decrease')"><i class="fa-solid fa-minimize"></i></button>
+                <button class="btn btn-switch-lines" onclick="onSwitchLines()"><i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn" onclick="onSaveMeme()"><i class="fa-regular fa-floppy-disk"></i></button>
             </aside>
         </section>
+
+        <section class="saved-memes-container">
+        </section>
     </main>
+
+    <section class="about-container">
+        <h1>This App Is Still In Development But...</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos provident facere quidem libero quo, accusamus esse quibusdam nihil veritatis iste quae ipsam voluptates blanditiis repellendus modi perspiciatis aperiam. Repellendus deleniti ducimus quidem nemo quis iusto quaerat explicabo illo laudantium nobis, dolorum alias accusamus dolore beatae culpa excepturi neque exercitationem! Voluptas commodi perspiciatis reiciendis ratione nihil. Neque optio dolores dignissimos illo fugit quasi aperiam praesentium, voluptates cumque recusandae eius aut laborum dolorum atque nemo unde provident corporis maiores hic pariatur est eaque omnis! Nam veniam, ullam blanditiis laudantium fugiat dolorum veritatis laborum porro eos vitae omnis modi nobis eius soluta natus.</p>
+    </section>
     
 
     <!-- SCRIPTS -->
