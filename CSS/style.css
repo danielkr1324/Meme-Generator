@@ -75,7 +75,7 @@ canvas {
 }
 
 .meme-container {
-    display: flex;
+    display: none;
     height: 600px;
     justify-content: space-around;
 
