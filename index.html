@@ -5,57 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/01321bbdf7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>ultimate Meme Generator</title>
-    <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/01321bbdf7.css" crossorigin="anonymous"> -->
 </head>
 <body onload="onInit()">
     
-    <header>
+    <header class="flex">
         <nav>
             <h2>MemeGenerator</h2>
             <ul>
-                <li><a href="#" class="nav-link" onclick="onRenderGallery()">Gallery</a> </li>
-                <li><a href="#" class="nav-link" onClick="onRenderMemes()">Memes</a> </li>
-                <li><a href="#" class="nav-link" onclick="onRenderAbout()">About</a> </li>
+                <li><a href="#" class="nav-link" onclick="onNavGalleryClick()">Gallery</a> </li>
+                <li><a href="#" class="nav-link" onClick="onNavMemesClick()">Memes</a> </li>
+                <li><a href="#" class="nav-link" onclick="onNavAboutClick()">About</a> </li>
             </ul>
         </nav>
 
     </header>
 
-    <main>
-        <section class="filter-bar">
+    <main class="main-layout">
+        <datalist id="keywordsList">
 
+        </datalist>
+
+
+        
+        <section class="gallery middle">
+            <label>Search Meme</label>
+            <input type="search" oninput="onSetFilterBy(this.value)" list="keywordsList">
+            <div class="gallery-container middle grid"></div>
+        </section>
+        
+        <section class="saved-memes-container middle grid">
         </section>
 
-        <section class="gallery-container"></section>
-
-        <section class="meme-container">
+        <section class="meme-container middle">
             <div class="canvas-container">
                 <canvas height="400" width="400"></canvas>
             </div>
             <aside class="editor">
                 <label>Enter Text</label>
-                <input type="text" class="text-input"  oninput="onSetLineText(event) ">
-                <label for="stroke">Stroke Color</label>
-                <input oninput="onSetColor('strokeColor',this.value)"  type="color" id="stroke" value="#000000">
-                <label for="fill">Fill Color</label>
-                <input oninput="onSetColor('fillColor',this.value)"  type="color" id="fill" value="#ffffff">
-                <button class="btn btn-add-line" onclick="onAddTxtLine()"><i class="fa-solid fa-plus"></i></button>
-                <button class="btn btn-increase" onclick="onFontSizeChange('increase')"><i class="fa-solid fa-maximize"></i></button>
-                <button class="btn btn-decrease" onclick="onFontSizeChange('decrease')"><i class="fa-solid fa-minimize"></i></button>
-                <button class="btn btn-switch-lines" onclick="onSwitchLines()"><i class="fa-solid fa-arrow-right"></i></button>
-                <button class="btn" onclick="onSaveMeme()"><i class="fa-regular fa-floppy-disk"></i></button>
+                <input type="text" class="text-input"  oninput="onSetLineText(event)" placeholder="Write here">
+                <div class="line-ops flex">
+                    <button title="Switch line" class="btn btn-switch-lines" onclick="onSwitchLines()"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button title="Add line" class="btn btn-add-line" onclick="onAddTxtLine()"><i class="fa-solid fa-plus"></i></button>
+                    <button title="Remove line" class="btn btn-remove" onclick="onRemoveTxtLine()"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div class="text-edit flex">
+                    <button title="Increase font" class="btn btn-increase" onclick="onFontSizeChange('increase')"><i class="fa-solid fa-maximize"></i></button>
+                    <label for="stroke">Stroke Color</label>
+                    <button title="decrease font" class="btn btn-decrease" onclick="onFontSizeChange('decrease')"><i class="fa-solid fa-minimize"></i></button>
+                    <input title="Stroke color" oninput="onSetColor('strokeColor',this.value)"  type="color" id="stroke" value="#000000">
+                    <label for="fill">Fill Color</label>
+                    <input title="Fill color" oninput="onSetColor('fillColor',this.value)"  type="color" id="fill" value="#ffffff">
+                </div>
+                <button title="Save meme" class="btn" onclick="onSaveMeme()"><i class="fa-regular fa-floppy-disk"></i></button>
+                <button title="download" class="btn"><a href="#"  onclick="onDownloadImg(this)" download="my-img.jpg"><i class="fa-solid fa-download"></i></a></button>
+                <button title="share on facebook" class="btn" onclick="onUploadImg()"><i class="fa-brands fa-facebook"></i></button>
+                <button title="clsoe editor" class="btn btn-close" onclick="onCloseEditor()"><i class="fa-regular fa-circle-xmark"></i></button>
             </aside>
         </section>
 
-        <section class="saved-memes-container">
-        </section>
+       
     </main>
 
     <section class="about-container">
-        <h1>This App Is Still In Development But...</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos provident facere quidem libero quo, accusamus esse quibusdam nihil veritatis iste quae ipsam voluptates blanditiis repellendus modi perspiciatis aperiam. Repellendus deleniti ducimus quidem nemo quis iusto quaerat explicabo illo laudantium nobis, dolorum alias accusamus dolore beatae culpa excepturi neque exercitationem! Voluptas commodi perspiciatis reiciendis ratione nihil. Neque optio dolores dignissimos illo fugit quasi aperiam praesentium, voluptates cumque recusandae eius aut laborum dolorum atque nemo unde provident corporis maiores hic pariatur est eaque omnis! Nam veniam, ullam blanditiis laudantium fugiat dolorum veritatis laborum porro eos vitae omnis modi nobis eius soluta natus.</p>
+        <h1>Not The Final Result!</h1>
     </section>
     
 

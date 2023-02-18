@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lavender;
+    margin: 0;
+    width: 100%;
+    /* overflow-x: hidden; */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: cornflowerblue;
+    color: rgb(40, 42, 61);
+    padding: 25px;
+    width: 100%;
+    background-size: cover;
+    margin-block-end: 5em;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a{
+    margin: 5px;
+    font: inherit;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+canvas {
+    height: 100%;
+    letter-spacing: 3px;
+    box-shadow: 2px 9px 39px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 9px 39px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 9px 39px 0px rgba(0,0,0,0.75);
+}
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+
+.grid-item {
+    width: 100%;
+    cursor: pointer;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: max-content;
+}
+
+.main-layout > .middle {
+    grid-column: 2;
+}
+
+
+.canvas-container {
+    height: 100%; 
+    width: 50%; 
+    margin: 0;
+    padding: 20px;
+    border: 2px solid lightslategray;
+}
+
+.meme-container {
+    display: flex;
+    height: 600px;
+    justify-content: space-around;
+
+}
+
+.meme-container label {
+    display: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+
+}
+
+.about-container {
+    display: none;
+    text-align: center;
+
+}
+
+.gallery-container,.saved-memes-container  {
+    margin-top: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-content: center;
+    align-items: center;
+    grid-auto-flow: dense;
+    gap: 20px;
+}
+
+
+
+.btn {
+    background-color: rgb(30, 35, 44);
+    color: lightblue;
+    width: 4em;
+    height: 4em;
+    margin: 1em 2em;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+
+.text-input {
+    width: 100%;
+    padding: 0.5em;
+}
+
+.editor {
+    width: 60%;
+    padding: 0 2em;
+}
+
+
+
+
+

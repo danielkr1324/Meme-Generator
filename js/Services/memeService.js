@@ -8,6 +8,7 @@ let gKeywordSearchCountMap = {}
 let gMeme = {
   selectedImg: {},
   selectedLineIdx: 0,
+  isSaved: false,
   lines: [
     {
       txt: 'I sometimes eat Falafel',
@@ -21,12 +22,18 @@ let gMeme = {
   ],
 }
 
+function getMeme() {
+  return {
+    ...gMeme,
+  }
+}
+
 function setImg(image) {
   gMeme.selectedImg = image
 }
 
 function setLineText(txt) {
-  gMeme.lines[gMeme.selectedLineIdx].txt = txt ? txt : 'your input'
+  gMeme.lines[gMeme.selectedLineIdx].txt = txt ? txt : 'ADD TEXT'
 }
 
 function addTxtLine(txt) {
@@ -75,7 +82,44 @@ function switchLines() {
 
 function saveMeme(dataUrl) {
   gMeme.imageDataURL = dataUrl
-  gMeme.memeId = makeId()
-  gSavedMemes.push(gMeme)
+  if (!gMeme.isSaved) {
+    gMeme.memeId = makeId()
+    gMeme.isSaved = true
+    gSavedMemes.push(gMeme)
+  } else {
+    let memeIdx = gSavedMemes.findIndex(meme => gMeme.memeId === meme.memeId)
+    gSavedMemes[memeIdx] = { ...gMeme }
+  }
   saveToStorage(STORAGE_KEY, gSavedMemes)
+  console.log(gMeme)
+}
+
+function removeTxtLine() {
+  if (!gMeme.lines.length) return
+
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+  gMeme.selectedLineIdx = 0
+}
+
+function reInitMeme() {
+  gMeme = {
+    selectedImg: {},
+    selectedLineIdx: 0,
+    isSaved: false,
+    lines: [
+      {
+        txt: 'I sometimes eat Falafel',
+        size: 30,
+        align: 'center',
+        color: 'black',
+        fontFamily: 'impact',
+        fillColor: 'white',
+        pos: {},
+      },
+    ],
+  }
+}
+
+function isMemeSaved() {
+  return getMeme().isSaved
 }

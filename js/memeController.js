@@ -9,9 +9,11 @@ function renderMeme(meme) {
   image.src = meme.selectedImg.url
   image.onload = () => {
     gElImage = image
-    resizeCanvas(image)
+    resizeCanvas()
     gCtx.drawImage(image, 0, 0, gElCanvas.width, gElCanvas.height)
+
     drawTxtLine(meme)
+    window.addEventListener('resize', resizeCanvas)
   }
 }
 
@@ -29,8 +31,9 @@ function renderCanvas() {
 
 function resizeCanvas() {
   const elCanvasContainer = document.querySelector('.canvas-container')
-  gElCanvas.height = elCanvasContainer.clientHeight
-  gElCanvas.width = elCanvasContainer.clientWidth
+  gElCanvas.height = elCanvasContainer.offsetHeight
+  gElCanvas.width = elCanvasContainer.offsetWidth
+  renderMeme(getMeme())
 }
 
 function drawTxtLine(meme = getMeme()) {
@@ -65,10 +68,12 @@ function onSetLineText(e) {
   renderCanvas()
 }
 
-function onAddTxtLine(txt = 'your input') {
+function onAddTxtLine(txt = 'ADD TEXT') {
   document.getElementById('stroke').value = '#000000'
   document.getElementById('fill').value = '#ffffff'
-  document.querySelector('.text-input').value = ''
+  const elTxtInput = document.querySelector('.text-input')
+  elTxtInput.value = ''
+  elTxtInput.focus()
   addTxtLine(txt)
   const lines = getMemeLines()
   setSelectedLineIdx(lines.length - 1)
@@ -96,12 +101,19 @@ function onSwitchLines() {
 }
 
 function onSaveMeme() {
-  const dataUrl = gElCanvas.toDataURL('image/png')
+  const dataUrl = gElCanvas.toDataURL()
   saveMeme(dataUrl)
   renderMemes()
 }
 
-function onRenderMemes() {
+function onCloseEditor() {
+  const elGalleryContainer = document.querySelector('.gallery-container')
+  const elMemesContainer = document.querySelector('.meme-container')
+  elGalleryContainer.style.display = 'grid'
+  elMemesContainer.style.display = 'none'
+}
+
+function onNavMemesClick() {
   const elAboutContainer = document.querySelector('.about-container')
   const elGalleryContainer = document.querySelector('.gallery-container')
   const elMemesContainer = document.querySelector('.meme-container')
@@ -110,17 +122,65 @@ function onRenderMemes() {
   elGalleryContainer.style.display = 'none'
   elAboutContainer.style.display = 'none'
   elMemesContainer.style.display = 'none'
-  elSavedMemesContainer.style.display = 'flex'
+  elSavedMemesContainer.style.display = 'grid'
+  renderMemes()
 }
 
-function onRenderAbout() {
+function onNavAboutClick() {
   const elAboutContainer = document.querySelector('.about-container')
   const elGalleryContainer = document.querySelector('.gallery-container')
   const elMemesContainer = document.querySelector('.meme-container')
   const elSavedMemesContainer = document.querySelector('.saved-memes-container')
 
-  elGalleryContainer.style.display = 'none'
   elAboutContainer.style.display = 'block'
+  elGalleryContainer.style.display = 'none'
   elMemesContainer.style.display = 'none'
   elSavedMemesContainer.style.display = 'none'
+}
+
+function onRemoveTxtLine() {
+  removeTxtLine()
+  renderCanvas()
+}
+
+function onDownloadImg(elLink) {
+  const imgContent = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = imgContent
+}
+
+function onUploadImg() {
+  const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+  function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+    console.log(encodedUploadedImgUrl)
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
+    )
+  }
+  doUploadImg(imgDataUrl, onSuccess)
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+  const formData = new FormData()
+  formData.append('img', imgDataUrl)
+
+  const XHR = new XMLHttpRequest()
+  XHR.onreadystatechange = () => {
+    if (XHR.readyState !== XMLHttpRequest.DONE) return
+    if (XHR.status !== 200) return console.error('Error uploading image')
+    const { responseText: url } = XHR
+
+    console.log('Got back live url:', url)
+    onSuccess(url)
+  }
+  XHR.onerror = (req, ev) => {
+    console.error(
+      'Error connecting to server with request:',
+      req,
+      '\nGot response data:',
+      ev
+    )
+  }
+  XHR.open('POST', '//ca-upload.com/here/upload.php')
+  XHR.send(formData)
 }

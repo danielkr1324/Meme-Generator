@@ -3,12 +3,15 @@
 function onInit() {
   renderImgsGallery()
   initCanvas()
+  resizeCanvas()
+  renderDataList()
 }
 
 function renderImgsGallery() {
   let imgsGallery = getImgsGallery()
   let strHTMLs = imgsGallery.map(
-    image => `<img onclick="onImgSelect(${image.id})" src="${image.url}"/>`
+    image =>
+      `<img class="grid-item" onclick="onImgSelect(${image.id})" src="${image.url}"/>`
   )
 
   const elGalleryContainer = document.querySelector('.gallery-container')
@@ -16,36 +19,62 @@ function renderImgsGallery() {
 }
 
 function onImgSelect(id) {
+  reInitMeme()
+  chooseImg(id)
+}
+
+function renderDataList() {
+  const keywords = getKeywords()
+  let strHTMLs = keywords.map(keyword => `<option value="${keyword}"></option>`)
+
+  const elKeywordsList = document.getElementById('keywordsList')
+  elKeywordsList.innerHTML = strHTMLs.join('')
+}
+
+function renderMemes() {
+  if (!gSavedMemes.length) return
+
+  const strHTMLs = gSavedMemes.map((meme, idx) => {
+    return `<img class="grid-item" src="${meme.imageDataURL}" onclick="onSavedMemeSelect(${idx})" />`
+  })
+  const elMemesContainer = document.querySelector('.saved-memes-container')
+  elMemesContainer.innerHTML = strHTMLs.join('')
+}
+
+function onNavGalleryClick() {
+  const elAboutContainer = document.querySelector('.about-container')
   const elGalleryContainer = document.querySelector('.gallery-container')
   const elMemesContainer = document.querySelector('.meme-container')
+  const elSavedMemesContainer = document.querySelector('.saved-memes-container')
+
+  elAboutContainer.style.display = 'none'
+  elGalleryContainer.style.display = 'grid'
+  elMemesContainer.style.display = 'none'
+  elSavedMemesContainer.style.display = 'none'
+  renderImgsGallery()
+  console.log('nuu')
+}
+
+function onSavedMemeSelect(idx) {
+  gMeme = structuredClone(gSavedMemes[idx])
+  chooseImg(gSavedMemes[idx].selectedImg.id)
+}
+
+function chooseImg(id) {
+  const elMemesContainer = document.querySelector('.meme-container')
+  const elGalleryContainer = document.querySelector('.gallery-container')
+  const elSavedMemesContainer = document.querySelector('.saved-memes-container')
 
   const image = getImg(id)
   setImg(image)
   renderMeme(getMeme())
 
-  elGalleryContainer.style.display = 'none'
   elMemesContainer.style.display = 'flex'
+  elGalleryContainer.style.display = 'none'
+  elSavedMemesContainer.style.display = 'none'
 }
 
-function renderMemes() {
-  const memes = gSavedMemes
-  if (!memes.length) return
-
-  const strHTMLs = memes.map((meme, idx) => {
-    return `<img src="${meme.imageDataURL}" onclick="onSavedMemeClick(${idx})" `
-  })
-  const elMemesContainer = document.querySelector('.saved-memes-container')
-  elMemesContainer.innerHTML = strHTMLs.join('')
-  console.log(memes)
-  console.log(strHTMLs)
-}
-
-function onRenderGallery() {
-  const elAboutContainer = document.querySelector('.about-container')
-  const elGalleryContainer = document.querySelector('.gallery-container')
-  const elMemesContainer = document.querySelector('.meme-container')
-
-  elGalleryContainer.style.display = 'flex'
-  elAboutContainer.style.display = 'none'
-  elMemesContainer.style.display = 'none'
+function onSetFilterBy(keyword) {
+  setFilterBy(keyword)
+  renderImgsGallery()
 }
