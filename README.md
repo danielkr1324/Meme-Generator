@@ -1,2 +1,2 @@
 # Meme-Generator
-Third commit. Added some functionality and most basic css
+Forth commit. Added some more functionality. Still have a lot of work.
