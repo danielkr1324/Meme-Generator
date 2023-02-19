@@ -299,8 +299,8 @@ canvas {
 
 @media (max-width: 480px) {
     .meme-container {
-        height: 500px;
-        width: 300px;
+        height: 600px;
+        width: 470px;
         flex-direction: column;
         padding: 20px;
     }    
