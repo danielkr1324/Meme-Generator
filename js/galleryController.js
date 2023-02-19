@@ -43,12 +43,12 @@ function renderMemes() {
 
 function onNavGalleryClick() {
   const elAboutContainer = document.querySelector('.about-container')
-  const elGalleryContainer = document.querySelector('.gallery-container')
+  const elGallery = document.querySelector('.gallery')
   const elMemesContainer = document.querySelector('.meme-container')
   const elSavedMemesContainer = document.querySelector('.saved-memes-container')
 
   elAboutContainer.style.display = 'none'
-  elGalleryContainer.style.display = 'grid'
+  elGallery.style.display = 'block'
   elMemesContainer.style.display = 'none'
   elSavedMemesContainer.style.display = 'none'
   renderImgsGallery()
@@ -62,7 +62,7 @@ function onSavedMemeSelect(idx) {
 
 function chooseImg(id) {
   const elMemesContainer = document.querySelector('.meme-container')
-  const elGalleryContainer = document.querySelector('.gallery-container')
+  const elGallery = document.querySelector('.gallery')
   const elSavedMemesContainer = document.querySelector('.saved-memes-container')
 
   const image = getImg(id)
@@ -70,7 +70,7 @@ function chooseImg(id) {
   renderMeme(getMeme())
 
   elMemesContainer.style.display = 'flex'
-  elGalleryContainer.style.display = 'none'
+  elGallery.style.display = 'none'
   elSavedMemesContainer.style.display = 'none'
 }
 

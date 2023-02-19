@@ -1,5 +1,8 @@
 'use strict'
 
+const eltoggleMenu = document.querySelector('.toggle-menu')
+const elNavMenu = document.querySelector('.nav-menu')
+
 function makeId(length = 3) {
   const possible = '0123456789abcdefghijklmnopqrstuvwxyz'
   var txt = ''
@@ -8,3 +11,12 @@ function makeId(length = 3) {
   }
   return txt
 }
+
+function onToggleMenu() {
+  const eltoggleMenu = document.querySelector('.toggle-menu')
+  const elNavMenu = document.querySelector('.nav-menu')
+  eltoggleMenu.classList.toggle('active')
+  elNavMenu.classList.toggle('active')
+}
+
+function doPopup(msg) {}

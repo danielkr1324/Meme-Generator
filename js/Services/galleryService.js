@@ -52,12 +52,6 @@ function getImg(id) {
   return gImgs.find(img => img.id === id)
 }
 
-function getMeme() {
-  return {
-    ...gMeme,
-  }
-}
-
 function getKeywords() {
   let keywords = imagesKeywords.reduce((acc, keywords) => {
     keywords.forEach(keyword => {

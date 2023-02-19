@@ -18,6 +18,7 @@ let gMeme = {
       fontFamily: 'impact',
       fillColor: 'white',
       pos: {},
+      move: 0,
     },
   ],
 }
@@ -45,6 +46,7 @@ function addTxtLine(txt) {
     fontFamily: 'impact',
     fillColor: 'white',
     pos: {},
+    move: 0,
   }
   gMeme.lines.push(anotherTxtLine)
   return
@@ -101,6 +103,11 @@ function removeTxtLine() {
   gMeme.selectedLineIdx = 0
 }
 
+function moveLine(diraction) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  line.move = diraction === 'up' ? line.move + 3 : line.move - 3
+}
+
 function reInitMeme() {
   gMeme = {
     selectedImg: {},
@@ -115,6 +122,7 @@ function reInitMeme() {
         fontFamily: 'impact',
         fillColor: 'white',
         pos: {},
+        move: 0,
       },
     ],
   }
