@@ -12,12 +12,12 @@ body {
 }
 header {
     grid-template-columns: 200px 1fr 200px;
-    background-color: cornflowerblue;
     height: 80px;
     margin-block-end: 25px;
 }
 
 nav {
+    background-color: cornflowerblue;
     grid-column: 2/3;
     display: flex;
     align-items: center;
@@ -299,8 +299,8 @@ canvas {
 
 @media (max-width: 480px) {
     .meme-container {
-        height: 600px;
-        width: 470px;
+        height: 500px;
+        width: 330px;
         flex-direction: column;
         padding: 20px;
     }    
