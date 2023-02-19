@@ -57,7 +57,7 @@ canvas {
     display: none;
     cursor: pointer;
 }
-  .bar{
+.bar{
     display: block;
     width: 25px;
     height: 3px;
@@ -65,7 +65,7 @@ canvas {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     background-color: white;
-  }
+}
 
 .grid {
     display: grid;
@@ -75,11 +75,11 @@ canvas {
     display: flex;
 }
 
-
 .grid-item {
     width: 100%;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 5px;
 }
 
 .grid-item:hover {

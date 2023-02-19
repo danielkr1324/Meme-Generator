@@ -18,3 +18,5 @@ function onToggleMenu() {
   eltoggleMenu.classList.toggle('active')
   elNavMenu.classList.toggle('active')
 }
+
+function doPopup(msg) {}
