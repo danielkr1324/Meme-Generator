@@ -178,6 +178,29 @@ canvas {
     padding: 10px;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 50%;
+    translate: 50%;
+    background-color: cornflowerblue;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 2rem;
+    min-width: 130px;
+    min-height: 80px;
+    scale: 0;
+    transition: 0.3s;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.modal p {
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 2rem;
+}
 
 @media (max-width: 1200px) {
 
@@ -219,7 +242,7 @@ canvas {
         transform: translateY(-8px) rotate(-45deg);
       }
      .nav-menu {
-        position: fixed;
+        position: absolute;
         left: -100%;
         top: 70px;
         gap: 0;
@@ -228,6 +251,7 @@ canvas {
         width: 100%;
         text-align: center;
         transition: 0.3s;
+        z-index: 2;
       }
 
       .nav-link {
@@ -240,7 +264,13 @@ canvas {
     
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 780px) {
+
+    .main-layout {
+        display: block;
+        padding: 10px;
+    }
+
     .meme-container {
         height: 600px;
         width: 400px;
@@ -276,9 +306,9 @@ canvas {
     }    
 
     .canvas-container {
-        align-self: center;
         height: 50%; 
         width: 100%; 
+        margin: 0 auto;
     }
 
     .btn {

@@ -19,4 +19,13 @@ function onToggleMenu() {
   elNavMenu.classList.toggle('active')
 }
 
-function doPopup(msg) {}
+function doPopup(msg) {
+  const elModal = document.querySelector('.modal')
+  elModal.innerText = msg
+  elModal.style.scale = 1
+  elModal.style.display = 'flex'
+
+  setTimeout(() => {
+    elModal.style.scale = 0
+  }, 2000)
+}

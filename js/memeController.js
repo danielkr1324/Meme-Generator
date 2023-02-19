@@ -105,6 +105,7 @@ function onSaveMeme() {
   const dataUrl = gElCanvas.toDataURL()
   saveMeme(dataUrl)
   renderMemes()
+  doPopup('Meme saved')
 }
 
 function onNavMemesClick() {
