@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/01321bbdf7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>ultimate Meme Generator</title>
+</head>
+<body onload="onInit()">
+    
+    <header class="grid">
+        <nav>
+            <h2 onclick="onNavGalleryClick()">MemeGenerator</h2>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link" onclick="onNavGalleryClick();onToggleMenu()">Gallery</a> </li>
+                <li><a href="#" class="nav-link" onClick="onNavMemesClick();onToggleMenu()">Memes</a> </li>
+                <li><a href="#" class="nav-link" onclick="onNavAboutClick();onToggleMenu()">About</a> </li>
+            </ul>
+            <div class="toggle-menu" onclick="onToggleMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+             </div>
+        </nav>
+        
+    </header>
+
+    <main class="main-layout">
+        <datalist id="keywordsList"></datalist>
+
+        <section class="gallery middle">
+            <label>Search Meme</label>
+            <input type="search" oninput="onSetFilterBy(this.value)" list="keywordsList">
+            <div class="gallery-container middle grid"></div>
+        </section>
+        
+        <section class="saved-memes-container middle grid">
+        </section>
+
+        <section class="meme-container middle">
+            <div class="canvas-container">
+                <canvas height="400" width="400"></canvas>
+            </div>
+            <aside class="editor flex">
+
+                <label>Enter Text</label>
+                <input type="text" class="text-input"  oninput="onSetLineText(event)" placeholder="Write here">
+
+                <div class="line-ops ops btns-group flex">
+                    <button title="move line up" class="btn" onclick="onMoveLine('up')"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button title="move line down" class="btn" onclick="onMoveLine('down')"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button title="Switch line" class="btn btn-switch-lines" onclick="onSwitchLines()"><i class="fa-solid fa-arrow-down-up-across-line"></i></button>
+                    <button title="Add line" class="btn btn-add-line" onclick="onAddTxtLine()"><i class="fa-solid fa-plus"></i></button>
+                    <button title="Remove line" class="btn btn-remove" onclick="onRemoveTxtLine()"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+
+                <div class="text-ops ops btns-group flex">
+                    <button title="Increase font" class="btn btn-increase" onclick="onFontSizeChange('increase')">+A</i></button>
+                    <label for="stroke">Stroke Color</label>
+                    <button title="decrease " class="btn btn-decrease" onclick="onFontSizeChange('decrease')">-A</button>
+                    <input title="Stroke color" oninput="onSetColor('strokeColor',this.value)"  type="color" id="stroke" value="#000000">
+                    <label for="fill">Fill Color</label>
+                    <input title="Fill color" oninput="onSetColor('fillColor',this.value)"  type="color" id="fill" value="#ffffff">
+                </div>
+
+                <div class="share-ops ops flex">
+                    <button title="Save meme" class="btn" onclick="onSaveMeme()"><i class="fa-regular fa-floppy-disk"></i></button>
+                    <button title="download" class="btn"><a href="#"  onclick="onDownloadImg(this)" download="my-img.jpg"><i class="fa-solid fa-download"></i></a></button>
+                    <button title="share on facebook" class="btn" onclick="onUploadImg()"><i class="fa-brands fa-facebook"></i></button>
+                </div>
+            </aside>
+        </section>
+
+       
+    </main>
+
+    <section class="about-container">
+        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat nesciunt, alias atque eum ut excepturi aliquid earum assumenda, error repudiandae ipsa aspernatur eaque magni esse pariatur ab? Repudiandae iste voluptate, eveniet, animi, minus officia corrupti placeat nemo obcaecati natus illum deleniti quae architecto cupiditate ipsum vero? Totam id omnis quas?</h1>
+    </section>
+
+    <!-- SCRIPTS -->
+    <script src="js/Services/storageService.js"></script>
+    <script src="js/Services/utilService.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/Services/galleryService.js"></script>
+    <script src="js/Services/memeService.js"></script>
+    <script src="js/memeController.js"></script>
+</body>
+</html>
