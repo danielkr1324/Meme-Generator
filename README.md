@@ -1,2 +1,2 @@
 # Meme-Generator
-Forth commit. Added some more functionality and dsign. 
+Forth commit. Added some more functionality and design. 
